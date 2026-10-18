@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>startup credits</title>
+    <item>
+      <title>Cloud startup credits expanded</title>
+      <link>https://news.google.com/rss/articles/AAA</link>
+      <description>Providers added a free tier for new startups.</description>
+    </item>
+    <item>
+      <title>Grant round opens</title>
+      <link>https://news.google.com/rss/articles/BBB</link>
+      <description>Applications close soon.</description>
+    </item>
+  </channel>
+</rss>

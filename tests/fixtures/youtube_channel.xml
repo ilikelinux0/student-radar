@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+  <title>Uploads</title>
+  <entry>
+    <id>yt:video:abcdefghijk</id>
+    <yt:videoId>abcdefghijk</yt:videoId>
+    <title>Cloud credits office hours</title>
+    <link rel="alternate" href="https://www.youtube.com/watch?v=abcdefghijk"/>
+    <published>2026-10-11T00:00:00+00:00</published>
+    <media:group>
+      <media:description>How to apply for &lt;b&gt;startup credits&lt;/b&gt;.</media:description>
+    </media:group>
+  </entry>
+</feed>

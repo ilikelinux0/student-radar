@@ -1,0 +1,119 @@
+# Run settings. Your profile (fit summary and facts) is not here: it lives in
+# the gitignored profile.yaml locally and in the RADAR_PROFILE secret in CI.
+scorer_provider: gemini
+max_llm_items_per_run: 30
+llm_batch_size: 5
+keywords:
+  - staj
+  - stajyer
+  - intern
+  - internship
+  - yeni mezun
+  - new grad
+  - graduate
+  - genç yetenek
+  - young talent
+  - yetenek programı
+  - talent program
+  - trainee
+  - part-time
+  - part time
+  - bootcamp
+  - kamp
+  - camp
+  - akademi
+  - academy
+  - burs
+  - scholarship
+  - hibe
+  - grant
+  - "2209"
+  - ctf
+  - yarışma
+  - competition
+  - hackathon
+  - konferans
+  - conference
+  - zirve
+  - summit
+  - eğitim
+  - training
+  - sertifika
+  - certification
+  - siber
+  - cyber
+  - security
+  - güvenlik
+  - pentest
+user_agent: "StudentRadar/0.1 (personal research bot)"
+request_delay_seconds: 2
+db_path: data/radar.db
+export_dir: web/public/data
+max_items_per_source: 20
+max_new_items_per_run: 50
+# A source with `require: [level, tech]` keeps an item only when both groups
+# hit. Matching is a substring match after Turkish folding, so very short
+# words (it, soc, ağ) are left out: they match inside other words.
+keyword_groups:
+  level:
+    - intern
+    - staj
+    - new grad
+    - graduate
+    - junior
+    - entry level
+    - entry-level
+    - trainee
+    - genç yetenek
+    - young talent
+    - yeni mezun
+    - working student
+    - part-time student
+    - öğrenci
+    - apprentice
+    - early career
+  tech:
+    - security
+    - güvenlik
+    - siber
+    - cyber
+    - pentest
+    - penetration
+    - appsec
+    - red team
+    - software
+    - yazılım
+    - developer
+    - engineer
+    - mühendis
+    - devops
+    - cloud
+    - network
+    - backend
+    - data
+    - veri
+  security:
+    - security
+    - güvenlik
+    - siber
+    - cyber
+    - pentest
+    - penetration
+    - appsec
+    - red team
+    - offensive
+    - threat
+    - vulnerability
+    - zafiyet
+    - grc
+    - compliance
+    - iso 27001
+discovery_queries:
+  en:
+    - cybersecurity internship Turkey
+    - security engineering intern Istanbul
+    - new grad security engineer Turkey
+  tr:
+    - siber güvenlik stajı
+    - siber güvenlik yeni mezun
+    - siber güvenlik kampı başvuru

@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.env
+*.db-journal
+*.db-wal
+*.db-shm
+dist/
+web/node_modules/
+web/dist/
+*.egg-info/
+
+# Your CV and profile never enter git
+*_CV.pdf
+profile.yaml
+.wrangler/

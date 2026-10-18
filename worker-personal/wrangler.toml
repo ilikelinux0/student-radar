@@ -1,0 +1,6 @@
+name = "radar-me"
+main = "index.js"
+compatibility_date = "2026-10-12"
+workers_dev = true
+# Wrangler uses the account you log in with. To pin one, add:
+# account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"

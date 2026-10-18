@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Example credits</title>
+    <item>
+      <title>Startup credits expanded</title>
+      <link>https://example.com/replace-me/credits</link>
+      <description>Providers added a free tier for new startups.</description>
+    </item>
+    <item>
+      <title>Grant deadline posted</title>
+      <link>https://example.com/replace-me/grant</link>
+      <description>Applications close on 2026-12-01.</description>
+    </item>
+  </channel>
+</rss>

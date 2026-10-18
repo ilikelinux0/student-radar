@@ -1,0 +1,29 @@
+# Copy this file to profile.yaml (gitignored) and fill it in with your own
+# details. In GitHub, paste the same text into the RADAR_PROFILE secret.
+# Never commit profile.yaml or your CV.
+
+# The only profile text sent to the model. Write two or three sentences about
+# what you study, what you are good at, and what you are looking for.
+fit_summary: >
+  Third-year computer engineering student interested in backend development
+  and cloud. Looking for internships, new-grad programs, bootcamps, and
+  scholarships in Turkey or remote.
+
+# Words that must never appear in the snapshot (your name, your school's short
+# name, a company you interned at). They are removed from the model's output.
+private_terms: []
+
+# Compared by code against each posting's requirements. Never sent to the
+# model, stored, exported, or logged.
+facts:
+  birth_date: 2004-01-01
+  citizenship: [TR]            # two-letter country codes
+  passport: true
+  work_authorization: [TR]     # countries you can work in without a visa
+  graduation: 2027-06          # expected graduation month
+  gpa: 3.20                    # optional; remove the line to leave it out
+  gpa_scale: 4.0
+  english: B2                  # A1, A2, B1, B2, C1, C2, or remove the line
+  military_service: not_applicable  # done, deferred, exempt, not_applicable
+  # deferral_ends: 2028-06-30  # only when military_service is deferred
+  home_city: Istanbul

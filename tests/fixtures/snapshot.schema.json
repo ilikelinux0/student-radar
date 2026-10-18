@@ -1,0 +1,459 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "offers": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "meta",
+      "offers"
+    ],
+    "properties": {
+      "meta": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "generated_at",
+          "counts",
+          "duration_seconds"
+        ],
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "duration_seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "counts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "offers",
+              "mentions",
+              "sources"
+            ],
+            "properties": {
+              "offers": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "mentions": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "sources": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      },
+      "offers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "offer_key",
+            "provider",
+            "program_name",
+            "best_score",
+            "amount",
+            "deadline",
+            "first_seen_at",
+            "last_seen_at",
+            "mention_count",
+            "status",
+            "category",
+            "best_mention",
+            "mentions",
+            "fit",
+            "eligibility",
+            "eligibility_reason",
+            "application_status",
+            "deadline_kind",
+            "deadline_approx",
+            "starts_at",
+            "ends_at",
+            "location",
+            "remote",
+            "closed",
+            "usually_opens"
+          ],
+          "properties": {
+            "offer_key": {
+              "type": "string",
+              "minLength": 1
+            },
+            "provider": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "program_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "best_score": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 10
+            },
+            "amount": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "deadline": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "first_seen_at": {
+              "type": "string",
+              "minLength": 1
+            },
+            "last_seen_at": {
+              "type": "string",
+              "minLength": 1
+            },
+            "mention_count": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "new",
+                "seen",
+                "applied",
+                "ignored"
+              ]
+            },
+            "category": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "best_mention": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": false,
+              "required": [
+                "title",
+                "source",
+                "url",
+                "date",
+                "score",
+                "excerpt",
+                "summary",
+                "reasoning"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "score": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 10
+                },
+                "excerpt": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "summary": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 500
+                },
+                "reasoning": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 1000
+                }
+              }
+            },
+            "mentions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "title",
+                  "source",
+                  "url",
+                  "date",
+                  "score"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "score": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 10
+                  }
+                }
+              }
+            },
+            "fit": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 10
+            },
+            "eligibility": {
+              "enum": [
+                "eligible",
+                "unclear",
+                "ineligible",
+                null
+              ]
+            },
+            "eligibility_reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "application_status": {
+              "enum": [
+                "open",
+                "not_yet_open",
+                "closed",
+                "unknown"
+              ]
+            },
+            "deadline_kind": {
+              "enum": [
+                "apply_by",
+                "event_date",
+                "rolling",
+                "unknown"
+              ]
+            },
+            "deadline_approx": {
+              "type": "boolean"
+            },
+            "starts_at": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "ends_at": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "location": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "remote": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "closed": {
+              "type": "boolean"
+            },
+            "usually_opens": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "sources": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "meta",
+      "sources"
+    ],
+    "properties": {
+      "meta": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "generated_at",
+          "counts",
+          "duration_seconds"
+        ],
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "duration_seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "counts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "offers",
+              "mentions",
+              "sources"
+            ],
+            "properties": {
+              "offers": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "mentions": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "sources": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "name",
+            "category",
+            "type",
+            "last_checked",
+            "status",
+            "failures",
+            "items_found_last_run",
+            "last_error",
+            "url",
+            "usually_opens"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string"
+            },
+            "category": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "type": {
+              "type": "string"
+            },
+            "last_checked": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "status": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "ok",
+                "error",
+                null
+              ]
+            },
+            "failures": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "items_found_last_run": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "last_error": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "usually_opens": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

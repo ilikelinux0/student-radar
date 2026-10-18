@@ -1,0 +1,266 @@
+# Sources, verified 2026-10-12. See docs/SOURCES.md.
+# The first tag is the group the reader shows the source under.
+# Job boards are daily and close postings that disappear. Program pages that
+# say "Başvurular henüz başlamadı" are weekly; the page diff fires when they
+# open. usually_opens is what the program did in earlier years.
+
+# --- Job boards (Turkish companies with public board APIs) ---
+
+- id: picus-jobs
+  name: Picus Security jobs
+  url: https://api.lever.co/v0/postings/picus?mode=json
+  type: api
+  frequency: daily
+  fields: {title: text, url: hostedUrl, summary: descriptionPlain, location: categories.location}
+  require_title: [level]
+  closes_missing: true
+  tags: [jobs, security]
+
+# SmartRecruiters' robots.txt disallows its API, so these two read the public
+# career page instead. Each posting card is one line of the page diff.
+- id: lostar-jobs
+  name: Lostar jobs
+  url: https://careers.smartrecruiters.com/Lostar
+  type: scrape
+  frequency: daily
+  selector: li.opening-job
+  require_title: [level]
+  tags: [jobs, security]
+
+- id: brandefense-jobs
+  name: Brandefense jobs
+  url: https://careers.smartrecruiters.com/brandefense
+  type: scrape
+  frequency: daily
+  selector: li.opening-job
+  require_title: [level]
+  tags: [jobs, security]
+
+- id: trendyol-jobs
+  name: Trendyol jobs
+  url: https://api.lever.co/v0/postings/trendyol?mode=json
+  type: api
+  frequency: daily
+  fields: {title: text, url: hostedUrl, summary: descriptionPlain, location: categories.location}
+  require_title: [level, tech]
+  closes_missing: true
+  tags: [jobs, tech]
+
+- id: dreamgames-jobs
+  name: Dream Games jobs
+  url: https://api.lever.co/v0/postings/dreamgames?mode=json
+  type: api
+  frequency: daily
+  fields: {title: text, url: hostedUrl, summary: descriptionPlain, location: categories.location}
+  require_title: [level, tech]
+  closes_missing: true
+  tags: [jobs, tech]
+
+- id: midas-jobs
+  name: Midas jobs
+  url: https://api.lever.co/v0/postings/getmidas?mode=json
+  type: api
+  frequency: daily
+  fields: {title: text, url: hostedUrl, summary: descriptionPlain, location: categories.location}
+  require_title: [level, tech]
+  closes_missing: true
+  tags: [jobs, tech]
+
+- id: iyzico-jobs
+  name: iyzico jobs
+  url: https://api.lever.co/v0/postings/iyzico?mode=json
+  type: api
+  frequency: daily
+  fields: {title: text, url: hostedUrl, summary: descriptionPlain, location: categories.location}
+  require_title: [level, tech]
+  closes_missing: true
+  tags: [jobs, tech]
+
+# --- Listings (new internships, talent programs, events) ---
+
+- id: youthall-jobs
+  name: Youthall internships and jobs
+  url: https://www.youthall.com/tr/is-ilanlari/
+  type: scrape
+  frequency: daily
+  selector: .jobs
+  require: [tech]
+  tags: [listings]
+
+- id: youthall-programs
+  name: Youthall talent programs
+  url: https://www.youthall.com/tr/yetenek-programlari/
+  type: scrape
+  frequency: daily
+  # Titles only: the card's rating and review count change every day.
+  selector: .jobs-content-header
+  tags: [listings]
+
+- id: coderspace-events
+  name: Coderspace events
+  url: https://coderspace.io/etkinlikler
+  type: scrape
+  frequency: daily
+  selector: div.group.shadow-elevation-200
+  tags: [listings]
+
+- id: techcareer-events
+  name: Techcareer events
+  url: https://www.techcareer.net/events
+  type: scrape
+  frequency: daily
+  selector: div.MuiGrid-grid-md-4 > a
+  tags: [listings]
+
+- id: patika-bootcamps
+  name: Patika bootcamps
+  url: https://www.patika.dev/bootcamp
+  type: scrape
+  frequency: weekly
+  tags: [listings]
+
+# --- Watched programs (pages that change when applications open) ---
+
+- id: stm-starteam
+  name: STM StarTeaM (Siber Güvenlik track)
+  url: https://www.youthall.com/tr/yetenek-programlari/stm-starteam-yetenek-programi
+  type: scrape
+  frequency: weekly
+  tags: [programs]
+
+- id: turkcell-gncytnk
+  name: Turkcell GNÇYTNK
+  url: https://www.youthall.com/tr/yetenek-programlari/turkcell-gncytnk
+  type: scrape
+  frequency: weekly
+  usually_opens: Feb–Mar
+  tags: [programs]
+
+- id: turk-telekom-start
+  name: Türk Telekom START
+  url: https://www.youthall.com/tr/yetenek-programlari/turk-telekom-turk-telekom-start
+  type: scrape
+  frequency: weekly
+  usually_opens: Apr–May
+  tags: [programs]
+
+- id: intertech-starttech
+  name: Intertech StartTech (online part-time)
+  url: https://www.youthall.com/tr/yetenek-programlari/intertech-starttech-online-part-time-programi
+  type: scrape
+  frequency: weekly
+  usually_opens: Jun–Jul, Nov–Dec
+  tags: [programs]
+
+- id: garanti-z-talent
+  name: Garanti BBVA Teknoloji Z Talent
+  url: https://www.youthall.com/tr/yetenek-programlari/garanti-bbva-teknoloji-z-talent
+  type: scrape
+  frequency: weekly
+  tags: [programs]
+
+- id: softtech-yetenek
+  name: Softtech Yetenek Kuşağı
+  url: https://www.youthall.com/tr/yetenek-programlari/softtech-yetenek-kusagi
+  type: scrape
+  frequency: weekly
+  usually_opens: Jun
+  tags: [programs]
+
+- id: vodafone-graduate
+  name: Vodafone Discover Graduate
+  url: https://www.youthall.com/tr/yetenek-programlari/vodafone-discover-graduate-program-2026
+  type: scrape
+  frequency: weekly
+  usually_opens: Jun–Jul
+  tags: [programs]
+
+- id: vodafone-internship
+  name: Vodafone Long-Term Internship
+  url: https://www.youthall.com/tr/yetenek-programlari/vodafone-long-term-internship-program
+  type: scrape
+  frequency: weekly
+  tags: [programs]
+
+- id: tei-aday-muhendis
+  name: TEI Aday Mühendislik (Eskişehir)
+  url: https://www.youthall.com/tr/yetenek-programlari/tei-tusas-gucun-kaynaginda-kariyer-aday-muhendislik-programi
+  type: scrape
+  frequency: weekly
+  usually_opens: Sep–Oct
+  tags: [programs]
+
+- id: teb-tech-leaders
+  name: TEB Geleceğin Teknoloji Liderleri
+  url: https://www.youthall.com/tr/yetenek-programlari/teb-gelecegin-teknoloji-liderleri-programi
+  type: scrape
+  frequency: weekly
+  tags: [programs]
+
+- id: turkiye-finans-we-plus-it
+  name: Türkiye Finans We Plus (IT, part-time)
+  url: https://www.youthall.com/tr/yetenek-programlari/turkiye-finans-we-plus-bilgi-sistemleri-part-time-ise-alim-programi
+  type: scrape
+  frequency: weekly
+  tags: [programs]
+
+- id: siemens-working-student
+  name: Siemens part-time working student
+  url: https://www.youthall.com/tr/yetenek-programlari/siemens-part-time-working-student
+  type: scrape
+  frequency: weekly
+  tags: [programs]
+
+- id: hubx-new-grad
+  name: HubX New Grad Program
+  url: https://www.youthall.com/tr/yetenek-programlari/hubx-new-grad-program
+  type: scrape
+  frequency: weekly
+  tags: [programs]
+
+- id: thy-careers
+  name: THY open positions
+  url: https://careers.turkishairlines.com/acik-pozisyonlar
+  type: scrape
+  frequency: weekly
+  tags: [programs]
+
+# --- Grants, training, and competitions ---
+
+- id: tubitak-2209-a
+  name: TÜBİTAK 2209-A
+  url: https://tubitak.gov.tr/tr/burslar/lisans-onlisans/destek-programlari/2209-universite-ogrencileri-arastirma-projeleri-destekleme-programi
+  type: scrape
+  frequency: weekly
+  usually_opens: Oct
+  tags: [grants]
+
+- id: tubitak-2209-b
+  name: TÜBİTAK 2209-B (industry projects)
+  url: https://tubitak.gov.tr/tr/burslar/lisans-onlisans/destek-programlari/2209-b-universite-ogrencileri-sanayiye-yonelik-arastirma-projeleri-destegi-programi
+  type: scrape
+  frequency: weekly
+  usually_opens: Oct
+  tags: [grants]
+
+- id: sibervatan
+  name: Siber Vatan
+  url: https://sibervatan.org/
+  type: scrape
+  frequency: weekly
+  usually_opens: Oct–Nov
+  tags: [training]
+
+- id: picus-academy
+  name: Picus Cyber Talent Academy
+  url: https://academy.picussecurity.com/
+  type: scrape
+  frequency: weekly
+  tags: [training]
+
+- id: teknofest
+  name: TEKNOFEST competitions
+  url: https://www.teknofest.org/tr/yarismalar/
+  type: scrape
+  frequency: weekly
+  tags: [competitions]

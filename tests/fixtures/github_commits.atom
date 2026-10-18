@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>commits</title>
+  <entry>
+    <title>Add startup credits section</title>
+    <link href="https://github.com/acme/credits-list/commit/abc123"/>
+    <updated>2026-10-11T00:00:00Z</updated>
+    <content type="html">Added a credits heading</content>
+  </entry>
+</feed>

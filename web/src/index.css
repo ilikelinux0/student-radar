@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --bg: #f3efe6;
+  --panel: #faf7f1;
+  --ink: #1d1a16;
+  --muted: #6f685e;
+  --line: #e3daca;
+  --accent: #8d5b12;
+  --danger: #a33b32;
+  --chip: #efe6d6;
+  --selected: #efe4cc;
+  --shadow: 0 12px 40px rgb(40 30 10 / 8%);
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #10130f;
+  --panel: #171b16;
+  --ink: #efe8db;
+  --muted: #9b9486;
+  --line: #2b3128;
+  --accent: #e2b15a;
+  --danger: #f07167;
+  --chip: #24281f;
+  --selected: #2a2618;
+  --shadow: none;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+@layer base {
+  button,
+  input,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+.reader-title {
+  font-family: Newsreader, Georgia, serif;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}

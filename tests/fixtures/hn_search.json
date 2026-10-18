@@ -1,0 +1,35 @@
+{
+  "hits": [
+    {
+      "objectID": "2",
+      "title": "Show HN: startup credits tracker",
+      "url": "https://Publisher.Example/credits?utm_source=hn&fbclid=abc#top",
+      "story_text": null,
+      "created_at": "2026-10-11T09:00:00.000Z",
+      "_tags": ["story", "show_hn"]
+    },
+    {
+      "objectID": "1",
+      "title": "Old grant post",
+      "url": "https://example.com/old-grant",
+      "created_at": "2026-10-01T09:00:00.000Z",
+      "_tags": ["story"]
+    },
+    {
+      "objectID": "3",
+      "story_title": "Ask HN: cloud credits",
+      "comment_text": "We got startup credits from the program.",
+      "story_url": "https://news.ycombinator.com/item?id=9",
+      "created_at": "2026-10-11T10:00:00.000Z",
+      "_tags": ["comment"]
+    },
+    {
+      "objectID": "4",
+      "title": "Ask HN: grant help",
+      "url": null,
+      "story_text": "Where are the startup credits?",
+      "created_at": "2026-10-11T08:00:00.000Z",
+      "_tags": ["story", "ask_hn"]
+    }
+  ]
+}

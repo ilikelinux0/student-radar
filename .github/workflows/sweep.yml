@@ -1,0 +1,102 @@
+name: sweep
+
+on:
+  schedule:
+    # 06:00 UTC every day. Change this if you want a different hour.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Check every enabled source, ignoring its daily or weekly window
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: sweep
+  cancel-in-progress: false
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    env:
+      UV_PYTHON_PREFERENCE: only-system
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: "0.11.29"
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen --no-dev
+
+      - name: See if an enabled source needs a browser
+        id: browsers
+        run: |
+          needed="$(uv run python -c 'from pathlib import Path; from radar.config import load_config, needs_playwright; config = load_config(Path("sources.yaml"), Path("settings.yaml")); print("true" if needs_playwright(config.sources) else "false")')"
+          echo "needed=${needed}" >> "${GITHUB_OUTPUT}"
+
+      - name: Install Playwright browser
+        if: steps.browsers.outputs.needed == 'true'
+        run: uv run --with playwright playwright install --with-deps chromium
+
+      - name: Read scorer provider
+        id: scorer
+        run: |
+          provider="$(uv run python -c 'from pathlib import Path; from radar.config import load_config; config = load_config(Path("sources.yaml"), Path("settings.yaml")); print(config.settings.scorer_provider)')"
+          echo "provider=${provider}" >> "${GITHUB_OUTPUT}"
+
+      - name: Configure AWS credentials
+        if: steps.scorer.outputs.provider == 'bedrock'
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Without the RADAR_PROFILE secret the sweep logs one line and exits 0.
+      - name: Sweep
+        env:
+          RADAR_PROFILE: ${{ secrets.RADAR_PROFILE }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          BEDROCK_MODEL_ID: ${{ secrets.BEDROCK_MODEL_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
+        run: >-
+          uv run
+          ${{ steps.browsers.outputs.needed == 'true' && '--with playwright' || '' }}
+          python -m radar.sweep
+          ${{ github.event_name == 'workflow_dispatch' && inputs.force == true && '--force' || '' }}
+
+      - name: Commit findings and snapshot
+        run: |
+          paths=""
+          # The files exist only after the first run with a profile.
+          for path in data/radar.db web/public/data/offers.json web/public/data/sources.json; do
+            if [ -e "$path" ]; then paths="$paths $path"; fi
+          done
+          if [ -z "$paths" ]; then
+            echo "no findings or snapshot yet"
+            exit 0
+          fi
+          git add -- $paths
+          if git diff --cached --quiet; then
+            echo "findings and snapshot unchanged"
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "sweep: update findings and snapshot"
+          git pull --rebase --no-edit origin main
+          git push
